@@ -39,8 +39,8 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} defconfig
 
     # Fix for yylloc
-    curl https://github.com/torvalds/linux/commit/e33a814e772cdc36436c8c188d8c42d019fda639.patch -o yylloc.patch
-    git apply yylloc.patch
+    # curl https://github.com/torvalds/linux/commit/e33a814e772cdc36436c8c188d8c42d019fda639.patch -o yylloc.patch
+    git apply ${FINDER_APP_DIR}/yylloc.patch
 
     make -j4 ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} all
     make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} modules
@@ -111,6 +111,7 @@ make CROSS_COMPILE=${CROSS_COMPILE}
 # TODO: Copy the finder related scripts and executables to the /home directory
 # on the target rootfs
 cp ${FINDER_APP_DIR}/finder.sh ${OUTDIR}/rootfs/home
+cp ${FINDER_APP_DIR}/writer.sh ${OUTDIR}/rootfs/home
 cp ${FINDER_APP_DIR}/writer ${OUTDIR}/rootfs/home
 
 mkdir -p ${OUTDIR}/rootfs/home/conf
