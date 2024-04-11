@@ -4,7 +4,7 @@ FLAGS= -g -Wall
 OUTPUT= writer
 
 # Cross compilation
-CROSS_COMPILER= ../../gcc-arm-10.3-2021.07-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
+CROSS_COMPILER= aarch64-none-linux-gnu-
 ifdef CROSS_COMPILE
 CC= $(CROSS_COMPILER)gcc
 endif
