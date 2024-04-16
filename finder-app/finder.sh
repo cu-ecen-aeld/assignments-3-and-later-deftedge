@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Ensure parameters specified; else exit 1
 if [ "$#" -ne 2 ]; then
