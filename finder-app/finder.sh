@@ -21,19 +21,9 @@ else
 fi
 
 # Output "The number of files are X and the number of matching lines are Y"
-files=$(grep -rl "$TEXT_SEARCH_STRING" "$DIRECTORY_PATH"/*)
-file_count=$($files | wc -l)
-# echo "$files"
-# echo "$file_count"
+total_files=$(find $DIRECTORY_PATH -type f | wc -l)
+total_lines=$(grep -rc $TEXT_SEARCH_STRING $DIRECTORY_PATH | awk -F ':' '{sum +=$2} END {print sum}')
 
-total_files=0
-total_lines=0
-while IFS= read -r file; do
-    ((total_files++))
-
-    lines=$(grep -c "$TEXT_SEARCH_STRING" "$file")
-    ((total_lines += lines))
-done <<< "$files"
 echo "The number of files are $total_files and the number of matching lines are $total_lines"
 
 if [ "$?" -eq 0 ]; then
